@@ -1,12 +1,12 @@
 ﻿@page
-@model Exercise3.Pages.CustomerModel
+@model Exercise3.Pages.EditModel
 @{
 }
-
 <div class="container">
-    <h1>Customer Record</h1>
+    <h1>Update Customer Information</h1>
     <form method="post">
         <div asp-validation-summary="All"></div>
+        <input type="hidden" asp-for="Customer.CustomerId" />
         <div class="form-group">
             <label>Name</label>
             <input class="form-control" asp-for="Customer.Name" />
@@ -35,38 +35,6 @@
             <label>Billing</label>
             <input class="form-control" asp-for="Customer.Billing" />
         </div>
-        <button class="btn btn-primary btn-block" type="submit">Save</button>
+        <button class="btn btn-primary btn-block" type="submit">Update</button>
     </form>
 </div>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Customer ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Check In</th>
-            <th>Check Out</th>
-            <th>Room Number</th>
-            <th>Email Address</th>
-            <th>Billing</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var customer in Model.Customers)
-        {
-        <tr>
-            <td>@customer.CustomerId</td>
-            <td>@customer.Name</td>
-            <td>@customer.Address</td>
-            <td>@customer.CheckIn</td>
-            <td>@customer.CheckOut</td>
-            <td>@customer.RoomNumber</td>
-            <td>@customer.EmailAddress</td>
-            <td>@customer.Billing</td>
-            <td><a asp-page="Edit" asp-route-id="@customer.CustomerId">Edit</a> | <a asp-page="Customer" asp-page-handler="Delete" asp-route-id="@customer.CustomerId">Delete</a></td>
-        </tr>
-        }
-    </tbody>
-</table>

@@ -35,7 +35,25 @@ namespace Exercise3.Pages
             _checkOutdbcontext.SaveChanges();
             return Redirect("/customer");
         }
+        public void OnGetDelete(int id)
+        {
+            
+            var cust = _checkOutdbcontext.Customers
+                .FirstOrDefault(c => c.CustomerId == id);
 
+            
+            if (cust != null)
+            {
+                
+                _checkOutdbcontext.Customers.Remove(cust);
+                _checkOutdbcontext.SaveChanges();
+            }
+
+
+                
+            OnGet();
+
+        }
 
     }
 }
